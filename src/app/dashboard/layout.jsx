@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchCurrentUser } from "../../redux/features/userSlice";
+import { fetchTasks } from "@/redux/features/taskSlice";
 
 export default function DashboardLayout({ children }) {
   const dispatch = useDispatch();
@@ -15,6 +16,10 @@ export default function DashboardLayout({ children }) {
   // 🔹 1. Fetch user on first load
   useEffect(() => {
     dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchTasks());
   }, [dispatch]);
 
   // 🔹 2. Set menu dynamically based on role

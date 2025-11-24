@@ -61,13 +61,7 @@ export default function Page() {
         }}
         onDelete={async (id) => {
           if (confirm("Are you sure you want to delete this exam?")) {
-            await fetch(
-              `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admin/delete-exam/${id}`,
-              {
-                method: "DELETE",
-                credentials: "include",
-              }
-            );
+            await apiClient.delete(`/staff/delete-exam/${id}`);
             // Refresh exams after delete
             fetchExams();
           }
